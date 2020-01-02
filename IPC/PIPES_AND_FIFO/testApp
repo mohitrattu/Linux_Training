@@ -1,0 +1,48 @@
+#! /bin/bash
+
+read -n1 -p "Do you Want to build server(y/n)?"
+if [ $REPLY = 'y' ]
+then
+	if ( make -C ./Server)
+	then 
+		echo "server build done"
+		mv ./Server/server .
+	else
+		echo "server buld fail"
+		read
+	fi
+fi
+
+read -n1 -p  "Do you Want to build client(y/n)?"
+	
+if [ $REPLY = 'y' ]
+then
+	if ( make -C ./Clients)
+	then 
+		echo "Client build done"
+		mv ./Clients/rc1 .
+	else
+		echo "Client buld fail"
+		read
+	fi
+fi
+
+read -n1 -p  "Do you Want to build vendor(y/n)?"
+
+if [ $REPLY = 'y' ]
+then
+	if ( make -C ./Vendors)
+	then 
+		echo "Vendor build done"
+		mv ./Vendors/adder .
+	else
+		echo "Vendor build fail"
+		read
+	fi
+fi
+
+read -n1 -p "Do you want to run App(y/n)?"
+if [ $REPLY = 'y' ]
+then
+	./server
+fi
